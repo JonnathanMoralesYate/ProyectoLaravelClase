@@ -15,6 +15,7 @@
                 Este token se utiliza para proteger tu aplicación contra ataques CSRF, que son intentos maliciosos de enviar solicitudes
                 no autorizadas desde un usuario autenticado a tu aplicación.-->
                 @csrf
+                
             <div class="mt-2">
                 <label for="nombreProduc" class="form-label text-black mt-3">Nombre:</label>
                 <input type="text" class="form-control" name="nombreproduc" required>
