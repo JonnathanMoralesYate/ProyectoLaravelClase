@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-outline-light">Registrar Producto</button>
+                    <button type="submit" class="btn btn-outline-dark">Registrar Producto</button>
                 </div>
             </form>
         </div>

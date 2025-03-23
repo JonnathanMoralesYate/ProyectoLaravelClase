@@ -33,6 +33,28 @@
             text-align: center;
             padding: 1rem 0;
         }
+
+        /*quitar el hover de barra de navegacion*/
+        .navbar-nav .dropdown-item {
+            transition: none !important; /* Elimina transiciones */
+            background-color: transparent !important; /* Evita cambios de color */
+        }
+
+        .navbar-nav .dropdown-item:hover {
+            background-color: transparent !important;
+            color: inherit !important; /* Mantiene el color original del texto */
+            text-decoration: none !important;
+    } 
+
+    .navbar-nav .dropdown-item {
+        color: white !important; /* Asegura que el texto sea blanco */
+    }
+
+    .navbar-nav .dropdown-item:hover {
+        background-color: transparent !important; /* Evita cambios de fondo */
+        color: white !important; /* Mantiene el texto en blanco */
+        text-decoration: none !important; /* Evita subrayados */
+    }
     </style>
 
 <body>
@@ -54,7 +76,8 @@
                     <li><a class="dropdown-item text-white" href="/">Inicio</a></li>
                         <!-- Productos -->
                         <li><a class="dropdown-item text-white" href="crearP">Crear Producto</a></li>
-                        <!-- <li><a class="dropdown-item text-white" href="listarP">Listar Productos</a></li> -->
+                        <li><a class="dropdown-item text-white" href="tipoProducto">Insert Tipo Productos</a></li>
+                        <li><a class="dropdown-item text-white" href="">Lista Productos</a></li>
                     </ul>        
                 </div>
             </div>

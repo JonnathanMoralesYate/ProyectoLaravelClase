@@ -10,5 +10,9 @@ class productoControllers extends Controller
     public function crearP() {
         return view('productos.crearP');
     }
+
+    public function tipoProducto() {
+        return view('productos.tipoProducto');
+    }
     
 }

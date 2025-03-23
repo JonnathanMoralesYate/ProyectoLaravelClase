@@ -11,4 +11,5 @@ Route::get('/', function () {
 Route::get('/crearP', [productoControllers::class, 'crearP'])->name('crearP');
 
 //ruta para redirigir vista 
+Route::get('tipoProducto', [productoControllers::class, 'tipoProducto'])->name('tipoProducto');
 
