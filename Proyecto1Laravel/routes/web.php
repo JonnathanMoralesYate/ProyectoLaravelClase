@@ -15,3 +15,5 @@ Route::get('tipoProducto', [tipoProductoControllers::class, 'tipoProducto'])->na
 //da acceso a todos los metodos en el controlador
 //Route::resource('productos', productoControllers::class);
 
+//ruta para guardar el tipo producto
+Route::post('/guardarTipoP', [tipoProductoControllers::class, 'guardarTipoP'])->name('guardarTipoP');
