@@ -75,9 +75,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li><a class="dropdown-item text-white" href="/">Inicio</a></li>
                         <!-- Productos -->
-                        <li><a class="dropdown-item text-white" href="crearP">Crear Producto</a></li>
-                        <li><a class="dropdown-item text-white" href="tipoProducto">Insert Tipo Productos</a></li>
-                        <li><a class="dropdown-item text-white" href="">Lista Productos</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('crearP') }}">Crear Producto</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('tipoProducto') }}">Insert Tipo Productos</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('listaP') }}">Lista Productos</a></li>
                     </ul>        
                 </div>
             </div>

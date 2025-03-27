@@ -30,6 +30,9 @@ class tipoProductoControllers extends Controller
 
         // Redirigir con un mensaje
         return redirect()->route('tipoProducto')->with('mensaje', 'Tipo Producto Guardado');
+
+        //para ver o verificar que ingresa
+        //return response()->json(['mensaje' => 'Tipo Producto Guardado']);
     }
 
 }
