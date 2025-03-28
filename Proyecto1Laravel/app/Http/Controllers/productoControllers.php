@@ -64,7 +64,7 @@ class productoControllers extends Controller
 
         // Asignar el valor al atributo
         $producto->nombreProducto = $request->nombreProducto;
-        $producto->fotoProducto = $rutaImagen;
+        $producto->fotoProducto = $nombreImagen;
         $producto->idTipoProducto = $request->idTipoProducto;
 
         // Guardar el tipo de producto en la base de datos
@@ -80,13 +80,19 @@ class productoControllers extends Controller
     }
 
 
-    public function listaP() {
+   /* public function listaP() {
         //sin relacion de llave foraneas
         //$productos = productoModels::all();
         //return view('productos.listaP', compact('productos'));
 
         //con relacion de llave foraneas
         $productos = productoModels::with('tipoproducto')->get();
+        return view('productos.listaProductos', compact('productos'));
+    }*/
+
+    public function listaProductos() {
+
+        $productos = productoModels::all();                      // Obtiene todos los tipos de productos
         return view('productos.listaProductos', compact('productos'));
     }
 

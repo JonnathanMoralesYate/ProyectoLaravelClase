@@ -25,9 +25,7 @@
         <tr>
             <td>{{ $producto->idProducto }}</td>
             <td>{{ $producto->nombreProducto }}</td>
-            <td>
-                <img src="{{ asset('storage/productos/' . $producto->fotoProducto) }}" width="50" alt="">
-            </td>
+            <td><img src="{{ asset('storage/productos/'.$producto->fotoProducto) }}" width="50" alt=""></td>
             <td>{{ $producto->idTipoProducto }}</td>
         </tr>
         @endforeach

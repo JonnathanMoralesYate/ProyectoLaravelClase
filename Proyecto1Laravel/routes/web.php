@@ -26,4 +26,4 @@ Route::post('/guardarTipoP', [tipoProductoControllers::class, 'guardarTipoP'])->
 Route::post('/guardarProductos', [productoControllers::class, 'guardarProductos'])->name('guardarProductos');
 
 //ruta para mostrar lista de productos
-Route::get('/listaP', [productoControllers::class, 'listaP'])->name('listaP');
+Route::get('/listaP', [productoControllers::class, 'listaProductos'])->name('listaP');
