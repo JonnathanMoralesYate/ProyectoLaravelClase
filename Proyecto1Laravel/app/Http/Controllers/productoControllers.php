@@ -71,12 +71,13 @@ class productoControllers extends Controller
         $producto->save();
         //muestra el array de producto que envia a guardar
         //dd('Producto guardado:', $producto);
+        // return response()->json($producto);
 
         // Redirigir con un mensaje
         return redirect()->route('crearP')->with('mensaje', 'Producto Guardado');
 
         //para ver o verificar que ingresa
-        //return response()->json(['mensaje' => 'Tipo Producto Guardado']);
+        //return response()->json(['mensaje' => 'Producto Guardado']);
     }
 
 
@@ -92,7 +93,7 @@ class productoControllers extends Controller
 
     public function listaProductos() {
 
-        $productos = productoModels::all();                      // Obtiene todos los tipos de productos
+        $productos = productoModels::with('tipoProducto')->get();
         return view('productos.listaProductos', compact('productos'));
     }
 

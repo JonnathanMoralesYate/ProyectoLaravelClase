@@ -18,7 +18,7 @@ class productoModels extends Model
     
     public function tipoProducto() {
 
-        return $this->belongsTo('App\tipoProductoModels', 'idTipoProducto', 'idTipoProducto');
+        return $this->belongsTo('App\Models\tipoProductoModels', 'idTipoProducto', 'idTipoProducto');
         //el primer idTipoProducto es la foreign key
         //y el segundo idTipoProducto es la primary key de la tabla tipoProducto
     }
