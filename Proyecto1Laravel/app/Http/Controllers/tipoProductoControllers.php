@@ -35,4 +35,34 @@ class tipoProductoControllers extends Controller
         //return response()->json(['mensaje' => 'Tipo Producto Guardado']);
     }
 
+
+    //muestra la vista de tipo producto
+    public function listaTipoP() {
+
+        $tipoProducto = tipoProductoModels::all();
+        return view('productos.listaTipoP', compact('tipoProducto'));
+    }
+
+    //muestra el formulario para eliminar producto
+    public function eliminarTipoP() {
+        $tipoProducto = tipoProductoModels::all();
+        return view('productos.eliminarTipoP', compact('tipoProducto'));
+    }
+
+    //elimina el tipo de producto
+    public function eliminarTipoProducto($idTipoProducto) {
+        
+        $tipoProducto = tipoProductoModels::find($idTipoProducto); // Busca el producto por su ID
+
+        if (!$tipoProducto) {
+            return redirect()->route('eliminarTipoP')->with('error', 'Producto no encontrado');
+        }
+
+        $tipoProducto->delete(); // Elimina el producto
+        return redirect()->route('eliminarTipoP')->with('mensaje', 'Producto eliminado correctamente');
+    
+    }
+
+
+
 }

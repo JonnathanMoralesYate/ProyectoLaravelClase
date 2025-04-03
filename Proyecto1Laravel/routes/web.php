@@ -27,3 +27,18 @@ Route::post('/guardarProductos', [productoControllers::class, 'guardarProductos'
 
 //ruta para mostrar lista de productos
 Route::get('/listaP', [productoControllers::class, 'listaProductos'])->name('listaP');
+
+//ruta para mostrar la vista de eliminar producto
+Route::get('/eliminarP', [productoControllers::class, 'eliminarP'])->name('eliminarP');
+
+//ruta para eliminar el producto
+Route::delete('/eliminarProducto/{idProducto}', [productoControllers::class, 'eliminarProducto'])->name('eliminarProducto');
+
+//ruta para mostrar lista de tipo producto
+Route::get('/listaTipoP', [tipoProductoControllers::class, 'listaTipoP'])->name('listaTipoP');
+
+//ruta para mostrar la vista de eliminar tipo producto
+Route::get('/eliminarTipoP', [tipoProductoControllers::class, 'eliminarTipoP'])->name('eliminarTipoP');
+
+//ruta para eliminar el tipo de producto
+Route::delete('/eliminarTipoProducto/{idTipoProducto}', [tipoProductoControllers::class, 'eliminarTipoProducto'])->name('eliminarTipoProducto');

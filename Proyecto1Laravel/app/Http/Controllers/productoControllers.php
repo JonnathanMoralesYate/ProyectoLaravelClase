@@ -97,6 +97,26 @@ class productoControllers extends Controller
         return view('productos.listaProductos', compact('productos'));
     }
 
+    //muestra el formulario para eliminar producto
+    public function eliminarP() {
+        $productos = productoModels::all();
+        return view('productos.eliminarP', compact('productos'));
+    }
+
+    //elimina el producto
+    public function eliminarProducto($idProducto) {
+        //dd($idProducto); // Esto detendrá la ejecución y mostrará el ID del producto a eliminar
+        $producto = productoModels::find($idProducto); // Busca el producto por su ID
+
+        if (!$producto) {
+            return redirect()->route('eliminarP')->with('error', 'Producto no encontrado');
+        }
+
+        $producto->delete(); // Elimina el producto
+        return redirect()->route('eliminarP')->with('mensaje', 'Producto eliminado correctamente');
+    
+    }
+
 
     
 }

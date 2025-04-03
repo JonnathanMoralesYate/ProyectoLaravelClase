@@ -55,33 +55,52 @@
         color: white !important; /* Mantiene el texto en blanco */
         text-decoration: none !important; /* Evita subrayados */
     }
+
+    .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #6c757d; /* Cambia el fondo al pasar el ratón */
+}
     </style>
 
 <body>
+    <div class="container-fluid">      
+    <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <!-- Barra de navegación -->
-        <nav class="navbar navbar-expand-lg bg-dark">
-            <div class="container-fluid">
-                <!-- Botón para menú en móviles -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <!-- Botón para menú en móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-white">MENU</span>
+        </button>
 
-                <!-- Contenedor del menú -->
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <!-- Logo e inicio -->                   
+        <!-- Contenedor del menú -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand text-white" href="/">Inicio</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Productos -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Productos
+                    </a>
+                    <ul class="dropdown-menu bg-dark" aria-labelledby="productosDropdown">
+                        <li><a class="dropdown-item text-white" href="{{ route('crearP') }}">Registrar Producto</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('listaP') }}">Consultar Producto</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('eliminarP') }}">Eliminar Producto</a></li>
+                    </ul>
+                </li>
 
-                    <!-- Menú de navegación -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li><a class="dropdown-item text-white" href="/">Inicio</a></li>
-                        <!-- Productos -->
-                        <li><a class="dropdown-item text-white" href="{{ route('crearP') }}">Crear Producto</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('tipoProducto') }}">Insert Tipo Productos</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('listaP') }}">Lista Productos</a></li>
-                    </ul>        
-                </div>
-            </div>
-        </nav>
+                <!-- Tipo Producto -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="entradasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Entrada de Productos
+                    </a>
+                    <ul class="dropdown-menu bg-dark" aria-labelledby="entradasDropdown">
+                        <li><a class="dropdown-item text-white" href="{{ route('tipoProducto') }}">Registrar Tipo Producto</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('listaTipoP') }}">Consultar Tipo Producto</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('eliminarTipoP') }}">Eliminar Tipo Producto</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
         
 
