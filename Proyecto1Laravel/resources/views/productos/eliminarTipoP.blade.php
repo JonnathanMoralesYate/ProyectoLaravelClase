@@ -37,4 +37,22 @@
         </div>
     </div>
 </div>
+@if(session('mensaje'))
+<div id="mensaje-alerta" class="alert alert-success">
+                {{ session('mensaje') }}
+                </div>
+
+                <script>
+                    setTimeout(function() {
+                    var mensajeAlerta = document.getElementById('mensaje-alerta');
+                        if (mensajeAlerta) {
+                            mensajeAlerta.style.transition = "opacity 0.5s";
+                            mensajeAlerta.style.opacity = "0";
+                            setTimeout(() => mensajeAlerta.style.display = "none", 500);
+                        }
+                    }, 3000); // 3000 milisegundos = 3 segundos
+                </script>
+            @endif
+        </div>
+    </div>
 @endsection

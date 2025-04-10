@@ -106,7 +106,10 @@ class productoControllers extends Controller
     //elimina el producto
     public function eliminarProducto($idProducto) {
         //dd($idProducto); // Esto detendrá la ejecución y mostrará el ID del producto a eliminar
-        $producto = productoModels::find($idProducto); // Busca el producto por su ID
+
+        // Busca el producto por su ID
+        $producto = productoModels::find($idProducto); 
+        //dd($producto); // Esto detendrá la ejecución y mostrará el producto encontrado
 
         if (!$producto) {
             return redirect()->route('eliminarP')->with('error', 'Producto no encontrado');

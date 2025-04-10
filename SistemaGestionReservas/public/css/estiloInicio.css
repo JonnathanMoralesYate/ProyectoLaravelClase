@@ -1,0 +1,399 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  header p {
+    font-size: 1.2rem;
+  }
+  nav {
+    background-color: #ffffffcc;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.8rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #00bcd4;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  section {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  section h2 {
+    color: #00bcd4;
+    margin-bottom: 1rem;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* estiloInicio.css */
+.carousel {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-slide {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+  margin: 0;           /* elimina espacio entre slides */
+  padding: 0;          /* asegura que no haya relleno */
+  flex-shrink: 0; 
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Animación automática */
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  33%  { transform: translateX(-100%); }
+  66%  { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 25s linear infinite;
+  gap: 0;
+}
+
+.imagen-hotel {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px; /* opcional, para que se vea más estético */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* opcional */
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2, h3 {
+  text-align: center;
+  color: #00bcd4; /* color similar al título en la imagen */
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+ul li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+strong {
+  color: #333;
+}
+
+p:last-of-type {
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+}
+
+.historia {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.historia section {
+  position: relative;
+  top: -40px; /* sube la tarjeta sobre la imagen */
+  max-width: 750px;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  background-color: #fff;
+  z-index: 1;
+}
+
+.historia p {
+  font-weight: 400;
+  color: #444;
+}
+
+.historia p strong {
+  font-weight: 600;
+  color: #222;
+}
+
+.img-historia {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 700px; /* o 600px si quieres un poco más estrecha */
+  height: auto;
+  border-radius: 12px; /* opcional para bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* sombra sutil */
+}
+
+
+
+/* Submenú estilos */
+.navbar-admin {
+  background-color: #ffffffcc;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  padding: 8px 12px;
+  display: block;
+  transition: color 0.3s;
+}
+
+.menu-item a:hover {
+  color: #00bcd4;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 180px;
+}
+
+.submenu a {
+  padding: 10px 15px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.submenu a:hover {
+  background-color: #f0f8ff;
+  color: #00bcd4;
+}
+
+.menu-item:hover .submenu {
+  display: block;
+}
+
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.form-registro .campo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-registro label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-registro input,
+.form-registro select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-registro button {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-registro button:hover {
+  background-color: #009fb0;
+}
+
+
+/* Ajustes generales para pantallas pequeñas */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  nav,
+  .navbar-admin {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .carousel {
+    width: 95%;
+  }
+
+  section {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .form-registro {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .form-registro .campo {
+    max-width: 100%;
+  }
+
+  .historia section {
+    top: 0;
+    padding: 1rem;
+  }
+
+  .img-historia {
+    max-width: 100%;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header p {
+    font-size: 0.95rem;
+  }
+
+  nav a,
+  .navbar-admin a {
+    font-size: 0.95rem;
+  }
+
+  .form-registro button {
+    width: 100%;
+  }
+}
+
+
+.carousel-track {
+  animation: none; /* Detener scroll automático si se desea en móvil */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-slide {
+  scroll-snap-align: start;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
