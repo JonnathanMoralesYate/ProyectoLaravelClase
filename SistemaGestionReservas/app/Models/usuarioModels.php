@@ -10,6 +10,7 @@ class usuarioModels extends Model
     protected $primaryKey = 'idUsuario';
     protected $fillable = [
         'idTipoDocum',
+        'numDocum',
         'nombre',
         'apellido',
         'idTipoUsua',

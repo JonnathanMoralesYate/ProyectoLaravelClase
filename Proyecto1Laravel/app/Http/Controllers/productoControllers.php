@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 
 class productoControllers extends Controller 
 {   /*
+    //muestra el formulario para crear producto
     public function crearP() {
         return view('productos.crearP');
     }*/

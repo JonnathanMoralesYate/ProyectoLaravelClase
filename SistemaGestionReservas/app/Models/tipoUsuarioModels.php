@@ -13,4 +13,5 @@ class tipoUsuarioModels extends Model
     ];
     public $timestamps = false; 
     
+    
 }
