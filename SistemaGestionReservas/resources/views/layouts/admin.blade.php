@@ -38,10 +38,8 @@
     <div class="menu-item">
         <a href="#">Habitaciones</a>
         <div class="submenu">
-            <a href="#">Registrar Habitaciones</a>
-            <a href="#">Actualizar Habitaciones</a>
-            <a href="#">Consulta Habitaciones</a>
-            <a href="#">Lista de Habitaciones</a>
+            <a href="{{ route('registroHabitacion') }}">Registrar Habitaciones</a>
+            <a href="{{ route('consultaHabitacion') }}">Consulta Habitaciones</a>
         </div>
     </div>
     <div class="menu-item">

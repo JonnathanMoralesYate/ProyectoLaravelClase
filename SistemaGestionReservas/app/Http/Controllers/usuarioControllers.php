@@ -13,7 +13,7 @@ use Illuminate\Routing\Controller;
 class usuarioControllers extends Controller
 {
 
-     //muestra el formulario o vista para eliminar producto
+     //muestra el formulario o vista para registrar usuario
     public function registroUsua() {
         $tiposDocum = TipoDocumentoModels::all();
         $tiposUsua = TipoUsuarioModels::all();

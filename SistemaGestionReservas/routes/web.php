@@ -3,6 +3,7 @@
 use App\Http\Controllers\usuarioControllers;
 use App\Http\Controllers\tipoHabitacionControllers;
 use App\Http\Controllers\estadoReservaControllers;
+use App\Http\Controllers\habitacionesControllers;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para navegar por la pagina de inicio
@@ -83,3 +84,27 @@ Route::put('/admin/estadoReservacion/actualizarEstadoR/{idEstadoR}', [estadoRese
 
 //Ruta para eliminar estado de reservación
 Route::delete('/admin/estadoReservacion/consultaEstadoR/{idEstadoR}', [estadoReservaControllers::class, 'eliminarEstadoR'])->name('eliminarEstadoR');
+
+
+//Rutas para el modulo de Habitaciones
+
+//Ruta para vista de registro de habitaciones
+Route::get('/admin/habitaciones/registroHabitacion', [habitacionesControllers::class, 'registroHabitacion'])->name('registroHabitacion');
+
+//Ruta para registrar habitaciones
+Route::post('/admin/habitaciones/registrarHabitacion', [habitacionesControllers::class, 'registrarHabitacion'])->name('registrarHabitacion');
+
+//Ruta para vista de consulta de habitaciones
+Route::get('/admin/habitaciones/consultaHabitacion', [habitacionesControllers::class, 'consultaHabitacion'])->name('consultaHabitacion');
+
+//Ruta para consulta de habitaciones por número de habitación
+Route::post('/admin/habitaciones/consultaHabitacionNumHabi', [habitacionesControllers::class, 'consultaHabitacionNumHabi'])->name('consultaHabitacionNumHabi');
+
+//Ruta para vista de actualizar habitaciones
+Route::get('/admin/habitaciones/actualizarHabitacion/{idHabitacion}', [habitacionesControllers::class, 'vistaActualizarHabitacion'])->name('vistaActualizarHabitacion');
+
+//Ruta para actualizar habitaciones
+Route::put('/admin/habitaciones/actualizarHabitacion/{idHabitacion}', [habitacionesControllers::class, 'actualizarHabitacion'])->name('actualizarHabitacion');
+
+//Ruta para eliminar habitaciones
+Route::delete('/admin/habitaciones/consultaHabitacion/{idHabitacion}', [habitacionesControllers::class, 'eliminarHabitacion'])->name('eliminarHabitacion');
