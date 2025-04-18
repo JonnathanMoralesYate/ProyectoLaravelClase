@@ -29,10 +29,8 @@
     <div class="menu-item">
         <a href="#">Reservas</a>
         <div class="submenu">
-            <a href="#">Registrar Reserva</a>
-            <a href="#">Actualizar Reservas</a>
-            <a href="#">Consulta Reserva</a>
-            <a href="#">Lista de Reservas</a>
+            <a href="{{ route('registroReserva') }}">Registrar Reserva</a>
+            <a href="{{ route('consultaReservas') }}">Consulta Reserva</a>
         </div>
     </div>
     <div class="menu-item">

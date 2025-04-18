@@ -4,6 +4,7 @@ use App\Http\Controllers\usuarioControllers;
 use App\Http\Controllers\tipoHabitacionControllers;
 use App\Http\Controllers\estadoReservaControllers;
 use App\Http\Controllers\habitacionesControllers;
+use App\Http\Controllers\reservaControllers;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para navegar por la pagina de inicio
@@ -108,3 +109,26 @@ Route::put('/admin/habitaciones/actualizarHabitacion/{idHabitacion}', [habitacio
 
 //Ruta para eliminar habitaciones
 Route::delete('/admin/habitaciones/consultaHabitacion/{idHabitacion}', [habitacionesControllers::class, 'eliminarHabitacion'])->name('eliminarHabitacion');
+
+//Rutas para el modulo de Reservas
+
+//Ruta para vista de registro de reserva
+Route::get('/admin/reservas/registrarReservas', [reservaControllers::class, 'registroReserva'])->name('registroReserva');
+
+//Ruta para registrar reserva
+Route::post('/admin/reservas/registrarReservas', [reservaControllers::class, 'registrarReserva'])->name('registrarReserva');
+
+//Ruta para vista de consulta de reserva
+Route::get('/admin/reservas/consultaReservas', [reservaControllers::class, 'consultaReserva'])->name('consultaReservas');
+
+//Ruta para consulta de reserva por número de documento cliente
+Route::post('/admin/reservas/consultaReservasNumDocum', [reservaControllers::class, 'consultaReservaNumDocum'])->name('consultaReservasNumDocum');
+
+//Ruta para vista de actualizar reserva
+Route::get('/admin/reservas/actualizaReserva/{idReserva}', [reservaControllers::class, 'vistaActualizarReserva'])->name('vistaActualizarReserva');
+
+//Ruta para actualizar reserva
+Route::put('/admin/reservas/actualizaReserva/{idReserva}', [reservaControllers::class, 'actualizarReserva'])->name('actualizarReserva');
+
+//Ruta para eliminar reserva
+Route::delete('/admin/reservas/consultaReservas/{idReserva}', [reservaControllers::class, 'eliminarReserva'])->name('eliminarReserva');
