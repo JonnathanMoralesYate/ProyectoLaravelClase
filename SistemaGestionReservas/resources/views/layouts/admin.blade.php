@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrador</title>
+    <title>@yield('title', 'Administrador')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -53,6 +53,12 @@
             <a href="{{ route('registroTipoHabi') }}">Registrar Tipo Habitacion</a>
             <a href="{{ route('consultaTipoHabi') }}">Consulta Tipo Habitacion</a>
         </div>
+    </div>
+    <div class="menu-item">
+        <form action="{{ route('cerrarSeccion') }}" method="POST" class="logout-form">
+            @csrf
+            <button type="submit" class="nav-link-button">Logout</button>
+        </form>
     </div>
 </nav>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\tipoHabitacionControllers;
 use App\Http\Controllers\estadoReservaControllers;
 use App\Http\Controllers\habitacionesControllers;
 use App\Http\Controllers\reservaControllers;
+use App\Http\Controllers\loginControllers;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para navegar por la pagina de inicio
@@ -14,7 +15,30 @@ Route::view('/historia', 'public.historia')->name('historia');
 Route::view('/nosotros', 'public.nosotros')->name('nosotros');
 Route::view('/contacto', 'public.contacto')->name('contacto');
 
+//Ruta para vista de login
+Route::get('/auth/login/login',[loginControllers:: class, 'login'])->name('login');
+
+//Ruta para vista de registro
+Route::get('/auth/login/registro',[loginControllers:: class, 'registro'])->name('registro');
+
+//Ruta para dashboard administrartivo
 Route::get('/admin/dashboard', function () {return view('admin.dashboard');})->name('admin.dashboard');
+
+//Ruta para dashboard de usuario
+Route::get('/users/dashboard', function () {return view('users.dashboard');})->name('users.dashboard');
+
+//Ruta para dashboard de empleado
+Route::get('/employee/dashboard', function () {return view('employee.dashboard');})->name('empleado.dashboard');
+
+
+//Rutas para el login
+
+//Ruta para iniciar sesión
+Route::post('/auth/login/iniciarSeccion',[loginControllers:: class, 'iniciarSeccion'])->name('iniciarSeccion');
+
+//Ruta para cerrar sesión
+Route::post('/auth/login/cerrarSeccion',[loginControllers:: class, 'cerrarSesion'])->name('cerrarSeccion');
+
 
 //rutas del modulo de usuarios
 

@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class usuarioModels extends Model
+
+class usuarioModels extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'usuarios';
     protected $primaryKey = 'idUsuario';
     protected $fillable = [
@@ -18,6 +23,11 @@ class usuarioModels extends Model
         'email',
         'password'
     ];
+
+    protected $hidden = [
+        'password',
+    ];
+    
     public $timestamps = false;
 
     // Relación con TipoDocumento

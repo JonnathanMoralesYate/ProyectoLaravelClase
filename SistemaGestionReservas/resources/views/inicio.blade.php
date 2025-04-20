@@ -1,31 +1,32 @@
-<title>Inicio</title>
-
 <!--llama el archivo layout.vav.php-->
 @extends('layouts.public')
-<!---->
+
+@section('title')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/estiloCarousel.css') }}">
+
 @section('content')
     <!--seccion de contenido-->
 
 <main>
-    <div class="container">
-        <!-- Carrusel -->
-            <div class="carousel">
-                <div class="carousel-track">
-                    <div class="carousel-slide">
-                        <img src="{{ asset('storage/imgInicio/hotel1.jpg') }}" alt="Hotel" class="imagen-hotel">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="{{ asset('storage/imgInicio/hotel2.jpg') }}" alt="Hotel" class="imagen-hotel">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="{{ asset('storage/imgInicio/hotel3.jpg') }}" alt="Hotel" class="imagen-hotel">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="{{ asset('storage/imgInicio/hotel4.jpg') }}" alt="Hotel" class="imagen-hotel">
-                    </div>
-                </div>
+    <div class="carousel">
+        <div class="carousel-track">
+            <div class="carousel-slide">
+                <img src="{{ asset('storage/imgInicio/hotel1.jpg') }}" alt="Hotel" class="imagen-hotel">
             </div>
+            <div class="carousel-slide">
+                <img src="{{ asset('storage/imgInicio/hotel2.jpg') }}" alt="Hotel" class="imagen-hotel">
+            </div>
+            <div class="carousel-slide">
+                <img src="{{ asset('storage/imgInicio/hotel3.jpg') }}" alt="Hotel" class="imagen-hotel">
+            </div>
+            <div class="carousel-slide">
+                <img src="{{ asset('storage/imgInicio/hotel4.jpg') }}" alt="Hotel" class="imagen-hotel">
+            </div>
+        </div>
     </div>
+
 
     <div class="container mt-5">
     <section>

@@ -1,5 +1,3 @@
-<title>Contacto</title>
-
 @extends('layouts.public')
 
 @section('title', 'Contacto')

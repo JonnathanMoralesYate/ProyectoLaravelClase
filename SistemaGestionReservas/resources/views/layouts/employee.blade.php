@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Users')</title>
+    <title>@yield('title', 'Empleado')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,21 +17,29 @@
 
     <nav class="navbar-admin">
     <div class="menu-item">
-        <a href="{{ route('users.dashboard') }}">Inicio</a>
+        <a href="{{ route('admin.dashboard') }}">Inicio</a>
     </div>
     <div class="menu-item">
-        <a href="#">Mi Reserva</a>
+        <a href="#">Usuarios</a>
         <div class="submenu">
-            <a href="">Registrar Reserva</a>
-            <a href="">Consulta Reserva</a>
+            <a href="{{ route('registroUsua') }}">Registrar Usuario</a>
+            <a href="{{ route('consultaUsuaNumDocum') }}">Consulta Usuario</a>
         </div>
     </div>
+    <div class="menu-item">
+        <a href="#">Reservas</a>
+        <div class="submenu">
+            <a href="{{ route('registroReserva') }}">Registrar Reserva</a>
+            <a href="{{ route('consultaReservas') }}">Consulta Reserva</a>
+        </div>
+    </div>
+    
     <div class="menu-item">
         <form action="{{ route('cerrarSeccion') }}" method="POST" class="logout-form">
             @csrf
             <button type="submit" class="nav-link-button">Logout</button>
         </form>
-    </div>    
+    </div>
 </nav>
 
 <div>
@@ -54,26 +62,26 @@
 
 <!-- Aquí el modal genérico -->
 <div class="modal fade" id="modalMensaje" tabindex="-1" aria-labelledby="modalMensajeLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal-dialog">
     <div class="modal-content border-info">
-        <div class="modal-header bg-info text-white">
+      <div class="modal-header bg-info text-white">
         <h5 class="modal-title" id="modalMensajeLabel">Mensaje</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body" id="modalMensajeContenido"></div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
+      </div>
+      <div class="modal-body" id="modalMensajeContenido"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
-    </div>
+  </div>
 </div>
 
 
-    <footer>
-        &copy; 2025 Mi Descanso. Todos los derechos reservados.
-    </footer>
+  <footer>
+    &copy; 2025 Mi Descanso. Todos los derechos reservados.
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/mensajeConfirmacionRegistros.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('js/mensajeConfirmacionRegistros.js') }}"></script>
 </body>
 </html>

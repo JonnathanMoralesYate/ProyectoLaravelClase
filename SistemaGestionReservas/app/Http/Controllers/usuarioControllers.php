@@ -56,6 +56,7 @@ class usuarioControllers extends Controller
                 $usuario->permiso = $request->boolean('permiso'); // asegura 1 o 0
                 $usuario->email = $request->input('email');
                 //$usuario->password = $request->input('password');
+                //$usuario->password = Hash::make($request->input('password'));
                 $usuario->password = bcrypt($request->input('password')); // encripta contraseña
 
                 //dd($usuario);

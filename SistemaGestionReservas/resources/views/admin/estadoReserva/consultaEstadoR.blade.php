@@ -1,5 +1,8 @@
 @extends('layouts.admin') 
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/estiloTable.css') }}">
+
 @section('content')
     <main>
         <div class="container-fluid mt-5">
