@@ -11,7 +11,7 @@
 <main>
     <div class="container mt-5">
         <h2>Panel de usuario</h2>
-        <p>Bienvenido, Usuario.</p>
+        <p>Bienvenido, Usuario {{ auth()->user()->nombre }}</p>
     </div>
 </main>
 @endsection

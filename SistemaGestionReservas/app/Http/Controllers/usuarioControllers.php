@@ -8,10 +8,18 @@ use App\Models\tipoUsuarioModels;
 use App\Models\usuarioModels;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Auth;
+
 
 
 class usuarioControllers extends Controller
 {
+
+    public function __construct()
+    {
+        // Aplicar el middleware auth para proteger todas las funciones de este controlador
+        $this->middleware('auth');
+    }
 
      //muestra el formulario o vista para registrar usuario
     public function registroUsua() {
@@ -59,12 +67,24 @@ class usuarioControllers extends Controller
                 //$usuario->password = Hash::make($request->input('password'));
                 $usuario->password = bcrypt($request->input('password')); // encripta contraseña
 
-                //dd($usuario);
+                    $user = Auth::user();
 
-                // Guardar el usuario en la base de datos
-                $usuario->save();
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            $usuario->save();
+                            return redirect()->route('registroUsua')->with('success', 'Usuario Registrado Exitosamente.');
+                        case 'Empleado':
+                            // Guardar el usuario en la base de datos
+                            $usuario->save();
+                            return redirect()->route('registroEmpleado')->with('success', 'Usuario Registrado Exitosamente.');
+                        default:
+                        Auth::logout(); // por seguridad
 
-                return redirect()->route('registroUsua')->with('success', 'Usuario Registrado Exitosamente.');
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
 
             } catch (\Exception $e) {
 
@@ -73,6 +93,7 @@ class usuarioControllers extends Controller
             }
 
     }
+    
 
     //muestra la vista para consultar usuario por numero de documento
     public function consultaUsuaNumDocum() {
@@ -89,25 +110,42 @@ class usuarioControllers extends Controller
         try {
             
             $numDocum = $request->input('numDocum');
+            
 
             $usuarios = usuarioModels::where('numDocum', $numDocum)->with(['tipoDocumento', 'tipoUsuario'])->get();
 
-                if ($usuarios) {
+                if ($usuarios) 
+                {
 
-                    return view('admin.users.consultaUsuaNumDocum', compact('usuarios'));
+                    $user = Auth::user();
 
-                } else {
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            return view('admin.users.consultaUsuaNumDocum', compact('usuarios'));
+                        case 'Empleado':
+                            return view('employee.users.consultaUsuaNumDocum', compact('usuarios'));
+                            
+                        default:
+                        Auth::logout(); // por seguridad
 
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
+                }else 
+                {
                     return redirect()->route('consultaUsuaNumDocum')->with('error', 'Usuario no encontrado.');
                 }
 
-        } catch (\Exception $e) {
+            } catch (\Exception $e) {
 
-            return redirect()->route('consultaUsuaNumDocum')->with('error', 'Error al consultar usuario: ' . $e->getMessage());
-        }
+                return redirect()->route('consultaUsuaNumDocum')->with('error', 'Error al consultar usuario: ' . $e->getMessage());
+            }
 
 
     }
+
 
     //muestra la vista para actualizar usuario
     public function vistaActualizarUsua($idUsuario) {
@@ -162,10 +200,25 @@ class usuarioControllers extends Controller
                 if ($request->filled('password')) {
                     $usuario->password = bcrypt($request->password);    // encripta contraseña
                 }
-    
-                $usuario->save();
-    
-                return redirect()->route('consultaUsuaNumDocum')->with('success', 'Usuario Actualizado Exitosamente.');
+                
+                $user = Auth::user();
+
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            $usuario->save();
+                            return redirect()->route('consultaUsuaNumDocum')->with('success', 'Usuario Actualizado Exitosamente.');
+                        case 'Empleado':
+                            // Guardar el usuario en la base de datos
+                            $usuario->save();
+                            return redirect()->route('consultaUsuaNumDocumE')->with('success', 'Usuario Actualizado Exitosamente.');
+                        default:
+                        Auth::logout(); // por seguridad
+
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
 
         }catch (\Exception $e) {
 

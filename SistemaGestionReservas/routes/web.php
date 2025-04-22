@@ -6,6 +6,8 @@ use App\Http\Controllers\estadoReservaControllers;
 use App\Http\Controllers\habitacionesControllers;
 use App\Http\Controllers\reservaControllers;
 use App\Http\Controllers\loginControllers;
+use App\Http\Controllers\employeControllers;
+use App\Http\Controllers\userControllers;
 use Illuminate\Support\Facades\Route;
 
 //Rutas para navegar por la pagina de inicio
@@ -16,10 +18,10 @@ Route::view('/nosotros', 'public.nosotros')->name('nosotros');
 Route::view('/contacto', 'public.contacto')->name('contacto');
 
 //Ruta para vista de login
-Route::get('/auth/login/login',[loginControllers:: class, 'login'])->name('login');
+Route::get('/auth/login',[loginControllers:: class, 'login'])->name('login');
 
 //Ruta para vista de registro
-Route::get('/auth/login/registro',[loginControllers:: class, 'registro'])->name('registro');
+Route::get('/auth/registro',[loginControllers:: class, 'registro'])->name('registro');
 
 //Ruta para dashboard administrartivo
 Route::get('/admin/dashboard', function () {return view('admin.dashboard');})->name('admin.dashboard');
@@ -38,6 +40,9 @@ Route::post('/auth/login/iniciarSeccion',[loginControllers:: class, 'iniciarSecc
 
 //Ruta para cerrar sesión
 Route::post('/auth/login/cerrarSeccion',[loginControllers:: class, 'cerrarSesion'])->name('cerrarSeccion');
+
+//Ruta para registrar usuario desde el login
+Route::post('/auth/registro/registroUsuario',[loginControllers:: class, 'registroUsuario'])->name('registroUsuario');
 
 
 //rutas del modulo de usuarios
@@ -86,6 +91,7 @@ Route::put('/admin/tipoHabitacion/actualizarTipoHabi/{idTipoHabi}', [tipoHabitac
 
 //Ruta para eliminar tipo de habitación
 Route::delete('/admin/tipoHabitacion/consultaTipoHabi/{idTipoHabi}', [tipoHabitacionControllers::class, 'eliminarTipoHabi'])->name('eliminarTipoHabi');
+
 
 //rutas del modulo de estado reservacion
 
@@ -156,3 +162,37 @@ Route::put('/admin/reservas/actualizaReserva/{idReserva}', [reservaControllers::
 
 //Ruta para eliminar reserva
 Route::delete('/admin/reservas/consultaReservas/{idReserva}', [reservaControllers::class, 'eliminarReserva'])->name('eliminarReserva');
+
+//Rutas de modulo empleados
+
+//Ruta para vista de registro 
+Route::get('/employee/users/registroUsua', [employeControllers::class, 'registroUsuaE'])->name('registroEmpleado');
+
+//Rutapara vista de consulta
+Route::get('/employee/users/consultaUsuaNumDocum', [employeControllers::class, 'consultaUsuaNumDocumE'])->name('consultaUsuaNumDocumE');
+
+//Ruta para vista de actualizar
+Route::get('/employee/users/actualizarUsua/{idUsuario}', [employeControllers::class, 'vistaActualizarUsuaE'])->name('vistaActualizarUsuaE');
+
+//Ruta para vista de registro de reserva
+Route::get('/employee/reservas/registrarReservas', [employeControllers::class, 'registroReservaE'])->name('registroReservaE');
+
+//Ruta para vista consulta de reserva
+Route::get('/employee/reservas/consultaReservas', [employeControllers::class, 'consultaReservaE'])->name('consultaReservasE');
+
+//Ruta para vista de actualizar reserva
+Route::get('/employee/reservas/actualizaReserva/{idReserva}', [employeControllers::class, 'vistaActualizarReservaE'])->name('vistaActualizarReservaE');
+
+
+//Rutas para el modulo de cliente
+
+
+//Ruta para vista de registro de reserva del cliente
+Route::get('/users/reservas/registrarReservas', [userControllers::class, 'registroReservaC'])->name('registroReservaC');
+
+//Ruta para vista de consulta de reserva del cliente
+Route::get('/users/reservas/consultaReservas', [userControllers::class, 'consultaReservaNumDocumC'])->name('consultaReservasC');
+
+//Ruta para vista de actualizar reserva del cliente
+Route::get('/users/reservas/actualizaReserva/{idReserva}', [userControllers::class, 'vistaActualizarReservaC'])->name('vistaActualizarReservaC');
+

@@ -22,8 +22,9 @@
     <div class="menu-item">
         <a href="#">Mi Reserva</a>
         <div class="submenu">
-            <a href="">Registrar Reserva</a>
-            <a href="">Consulta Reserva</a>
+            <a href="{{ route('registroReservaC') }}">Registrar Reserva</a>
+
+            <a href="{{ route('consultaReservasC') }}">Consulta Reserva</a>
         </div>
     </div>
     <div class="menu-item">

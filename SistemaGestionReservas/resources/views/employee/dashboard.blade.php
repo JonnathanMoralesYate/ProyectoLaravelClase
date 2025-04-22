@@ -6,7 +6,7 @@
 <main>
     <div class="container mt-5">
         <h2>Panel de Empleado</h2>
-        <p>Bienvenido, empleado.</p>
+        <p>Bienvenido, empleado {{ auth()->user()->nombre }}</p>
     </div>
 </main>
 @endsection

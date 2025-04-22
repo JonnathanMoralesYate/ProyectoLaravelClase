@@ -1,30 +1,23 @@
-@extends('layouts.public')
-
-@section('title', 'login')
-
-@section('css')
-    
-
+@extends('layouts.employee') 
 
 @section('content')
-    <!--seccion de contenido-->
-
 <main>
-    <div class="container">
-        <section>
-            <h2>Registro Usuario</h2>
-        <form action="{{ route('registroUsuario') }}" method="POST" class="form-registro">
+
+<div class="container">
+    <section>
+        <h2>Registrar usuario</h2>
+        <form action="{{ route('registrarUsuario') }}" method="POST" class="form-registro">
 
         @csrf
 
         <div class="campo">
             <label for="idTipoDocum">Tipo de documento:</label>
-            <select name="idTipoDocum" required>
-                <option value="">Seleccione...</option>
-                @foreach ($tiposDocum as $tipoDoc)
-                <option value="{{ $tipoDoc->idTipoDocum }}">{{ $tipoDoc->documento }}</option>
-                @endforeach
-            </select>
+                <select name="idTipoDocum" required>
+                    <option value="">Seleccione...</option>
+                    @foreach ($tiposDocum as $tipoDoc)
+                    <option value="{{ $tipoDoc->idTipoDocum }}">{{ $tipoDoc->documento }}</option>
+                    @endforeach
+                </select>
         </div>
 
         <div class="campo">
@@ -44,16 +37,22 @@
 
         <div class="campo">
             <label for="idTipoUsua">Tipo de usuario:</label>
-            <select name="idTipoUsua" required>
-                <option value="">Seleccione...</option>
-                <option value="1">Cliente</option>
-            </select>
+                <select name="idTipoUsua" required>
+                    <option value="">Seleccione...</option>
+                    @foreach ($tiposUsua as $tipoUsua)
+                    <option value="{{ $tipoUsua->idTipoUsua }}">
+                        {{ $tipoUsua->tipoUsuario }}
+                    </option>
+                    @endforeach
+                </select>
         </div>
-
+    
         <div class="campo">
             <!-- Se envía siempre -->
             <input type="hidden" name="permiso" value="0">
         </div>
+
+    
 
         <div class="campo">
             <label for="email">Correo electrónico:</label>
@@ -70,8 +69,6 @@
         </div>
         </form>
     </section>
-    </div>
+</div>
 </main>
-
-    <!--fin de seccion de contenido-->
-    @endsection
+@endsection

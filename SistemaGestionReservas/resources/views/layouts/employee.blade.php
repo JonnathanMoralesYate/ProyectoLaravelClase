@@ -17,20 +17,20 @@
 
     <nav class="navbar-admin">
     <div class="menu-item">
-        <a href="{{ route('admin.dashboard') }}">Inicio</a>
+        <a href="{{ route('empleado.dashboard') }}">Inicio</a>
     </div>
     <div class="menu-item">
         <a href="#">Usuarios</a>
         <div class="submenu">
-            <a href="{{ route('registroUsua') }}">Registrar Usuario</a>
-            <a href="{{ route('consultaUsuaNumDocum') }}">Consulta Usuario</a>
+            <a href="{{ route('registroEmpleado') }}">Registrar Usuario</a>
+            <a href="{{ route('consultaUsuaNumDocumE') }}">Consulta Usuario</a>
         </div>
     </div>
     <div class="menu-item">
         <a href="#">Reservas</a>
         <div class="submenu">
-            <a href="{{ route('registroReserva') }}">Registrar Reserva</a>
-            <a href="{{ route('consultaReservas') }}">Consulta Reserva</a>
+            <a href="{{ route('registroReservaE') }}">Registrar Reserva</a>
+            <a href="{{ route('consultaReservasE') }}">Consulta Reserva</a>
         </div>
     </div>
     

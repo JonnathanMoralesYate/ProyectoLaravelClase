@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\estadoReservaModels;
 use App\Models\reservaModels;
 use App\Models\usuarioModels;
+use Illuminate\Routing\Controller;
+
+use Illuminate\Support\Facades\Auth;
 
 class reservaControllers extends Controller
 {
+
+    public function __construct()
+    {
+        // Aplicar el middleware auth para proteger todas las funciones de este controlador
+        $this->middleware('auth');
+    }
     
     //Muestra la vista de registro de reserva
     public function registroReserva()
@@ -33,32 +42,54 @@ class reservaControllers extends Controller
 
         try {
 
-            // Buscar el cliente por su número de documento
-            $cliente = usuarioModels::where('numDocum', $request->input('numDocum'))->first();
+                // Buscar el cliente por su número de documento
+                $cliente = usuarioModels::where('numDocum', $request->input('numDocum'))->first();
 
             
 
-            if (!$cliente) {
+                if (!$cliente) {
                 return redirect()->route('admin.reservas.registrarReservas')->with('error', 'Cliente no encontrado.');
+                }
+
+                // Crear una nueva instancia del modelo
+                $reserva = new reservaModels();
+
+                $reserva->idUsuario = $cliente->idUsuario;
+                $reserva->idHabitacion = $request->input('idHabi');
+                $reserva->fechaInicio = $request->input('fechaInicio');
+                $reserva->fechaFin = $request->input('fechaFin');
+                $reserva->idEstado = $request->input('idEstado');
+
+                    $user = Auth::user();
+
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            $reserva->save();
+                            return redirect()->route('registroReserva')->with('success', 'Reserva registrada exitosamente.');
+                        case 'Empleado':
+                            // Guardar el usuario en la base de datos
+                            $reserva->save();
+                            return redirect()->route('registroReservaE')->with('success', 'Reserva registrada exitosamente.');
+                        case 'Cliente':
+                            $reserva->save();
+                            return redirect()->route('registroReservaC')->with('success', 'Reserva registrada exitosamente.');
+
+                        default:
+                        Auth::logout(); // por seguridad
+
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
+
+            } 
+            catch (\Exception $e) 
+            {
+                return redirect()->route('registroReserva')->with('error', 'Error al registrar la reserva: ' . $e->getMessage());
             }
-
-            // Crear una nueva instancia del modelo
-            $reserva = new reservaModels();
-
-            $reserva->idUsuario = $cliente->idUsuario;
-            $reserva->idHabitacion = $request->input('idHabi');
-            $reserva->fechaInicio = $request->input('fechaInicio');
-            $reserva->fechaFin = $request->input('fechaFin');
-            $reserva->idEstado = $request->input('idEstado');
-
-            // Guardar la reserva en la base de datos
-            $reserva->save();
-
-            return redirect()->route('registroReserva')->with('success', 'Reserva registrada exitosamente.');
-        } catch (\Exception $e) {
-            return redirect()->route('registroReserva')->with('error', 'Error al registrar la reserva: ' . $e->getMessage());
-        }
     }
+
 
     //Muestra la vista de consulta de reserva
     public function consultaReserva()
@@ -70,23 +101,43 @@ class reservaControllers extends Controller
     //Consulta reserva por numero de documento
     public function consultaReservaNumDocum(Request $request)
     {
-        $request->validate([
-            'numDocum' => 'required'
-        ]);
+        $request->validate(['numDocum' => 'required']);
 
         try {
-            $numDocum = $request->input('numDocum');
 
-            $reservas = reservaModels::whereHas('usuario', function ($query) use ($numDocum) {$query->where('numDocum', $numDocum);})->with(['usuario', 'habitacion', 'estadoReserva'])->get();
+                $numDocum = $request->input('numDocum');
 
-            if ($reservas->isEmpty()) {
-                return redirect()->route('consultaReservas')->with('error', 'No se encontraron reservas para el número de documento proporcionado.');
+                $reservas = reservaModels::whereHas('usuario', function ($query) use ($numDocum) {$query->where('numDocum', $numDocum);})->with(['usuario', 'habitacion', 'estadoReserva'])->get();
+
+                if ($reservas) 
+                {
+                    $user = Auth::user();
+
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            return view('admin.reservas.consultaReservas', compact('reservas'));
+                        case 'Empleado':
+                            return view('employee.reservas.consultaReservas', compact('reservas'));
+                            
+                        default:
+                        Auth::logout(); // por seguridad
+
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
+                }
+                else 
+                {
+                    return redirect()->route('consultaUsuaNumDocum')->with('error', 'Usuario no encontrado.');
+                }            
+
             }
-
-            return view('admin.reservas.consultaReservas', compact('reservas'));
-        } catch (\Exception $e) {
+            catch (\Exception $e) 
+            {
             return redirect()->route('consultaReservas')->with('error', 'Error al consultar las reservas: ' . $e->getMessage());
-        }
+            }
     }
 
     //Muestra la vista de actualizar reserva
@@ -130,10 +181,34 @@ class reservaControllers extends Controller
             $reserva->fechaFin = $request->input('fechaFin');
             $reserva->idEstado = $request->input('idEstado');
 
+            $user = Auth::user();
+
+                    // Redirigir según el rol
+                    switch ($user->tipoUsuario->tipoUsuario) 
+                    {
+                        case 'Administrador':
+                            $reserva->save();
+                            return redirect()->route('consultaReservas')->with('success', 'Reserva actualizada exitosamente.');
+                        case 'Empleado':
+                            // Guardar el usuario en la base de datos
+                            $reserva->save();
+                            return redirect()->route('consultaReservasE')->with('success', 'Reserva actualizada exitosamente.');
+                        case 'Cliente':
+                            // Guardar el usuario en la base de datos
+                            $reserva->save();
+                            return redirect()->route('consultaReservasC')->with('success', 'Reserva actualizada exitosamente.');
+
+                        default:
+                        Auth::logout(); // por seguridad
+
+                        //muestra el mensaje de error y lo redirige a la vista de inicio
+                        return redirect('/')->withErrors(['email' => 'Rol no válido']);
+                    }
+
             // Guardar los cambios en la base de datos
             $reserva->save();
 
-            return redirect()->route('consultaReservas')->with('success', 'Reserva actualizada exitosamente.');
+        
         } catch (\Exception $e) {
             return redirect()->route('admin.reservas.actualizaReserva', ['idReserva' => $idReserva])->with('error', 'Error al actualizar la reserva: ' . $e->getMessage());
         }

@@ -23,10 +23,19 @@
         <!--<a href="{{ route('users.dashboard') }}">Panel de Cliente</a> -->
         <a href="{{ route('login') }}">Login</a>
   </nav>
+  <div>
+        @if (session('success'))
+            <div id="mensaje-exito" data-mensaje="{{ session('success') }}"></div>
+        @endif
 
-  @if ($errors->any())
-    <div id="errores-validacion" data-errores='@json($errors->all())' style="display: none;"></div>
-  @endif
+        @if (session('error'))
+            <div id="mensaje-error" data-mensaje="{{ session('error') }}"></div>
+        @endif
+
+        @if ($errors->any())
+            <div id="errores-validacion" data-errores='@json($errors->all())' style="display: none;"></div>
+        @endif
+    </div>
 
   @yield('content')
 
