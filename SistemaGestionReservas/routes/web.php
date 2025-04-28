@@ -196,3 +196,7 @@ Route::get('/users/reservas/consultaReservas', [userControllers::class, 'consult
 //Ruta para vista de actualizar reserva del cliente
 Route::get('/users/reservas/actualizaReserva/{idReserva}', [userControllers::class, 'vistaActualizarReservaC'])->name('vistaActualizarReservaC');
 
+
+
+//Ruta para bucar data de habitaciones disponibles segun la fecha
+Route::post('/verDisponibilidadHabitaciones', [reservaControllers::class, 'verDisponibilidad']);

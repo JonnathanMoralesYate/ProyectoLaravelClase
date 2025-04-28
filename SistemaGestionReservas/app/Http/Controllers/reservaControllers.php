@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\estadoReservaModels;
 use App\Models\reservaModels;
 use App\Models\usuarioModels;
+use App\Models\habitacionesModels;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -229,6 +231,33 @@ class reservaControllers extends Controller
             return redirect()->route('consultaReservas')->with('error', 'Error al eliminar la reserva: ' . $e->getMessage());
         }
     }
+
+
+    //metodo de consulta para ver habitaciones disponibles, utilizando ajas
+    public function verDisponibilidad(Request $request)
+    {
+        $fechaInicio = $request->fechaInicio;
+        $fechaFin = $request->fechaFin;
+
+        $habitaciones = DB::table('habitaciones as h')
+            ->join('tipoHabitacion as th', 'h.idTipoHabi', '=', 'th.idTipoHabi')
+            ->whereNotIn('h.idHabitacion', function ($query) use ($fechaInicio, $fechaFin) {
+                $query->select('r.idHabitacion')
+                    ->from('reservas as r')
+                    ->join('estado as e', 'r.idEstado', '=', 'e.idEstado')
+                    ->whereIn('e.estado', ['Pendiente', 'Confirmada'])
+                    ->where(function ($q) use ($fechaInicio, $fechaFin) {
+                        $q->where(function ($query) use ($fechaInicio, $fechaFin) {
+                        $query->where('r.fechaInicio', '<=', $fechaFin)
+                                ->where('r.fechaFin', '>=', $fechaInicio);
+                        });
+                    });
+            })
+                ->select('h.idHabitacion', 'h.numero', 'th.tipoHabi', 'h.precio')
+                ->get();
+
+                return response()->json($habitaciones);
+}
 
 
 
